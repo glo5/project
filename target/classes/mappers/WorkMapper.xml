@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mappers.WorkMapper" >
+		<select id="workList" resultType="WorkVO">
+			SELECT  w.id,e.name,e.department,e.staff,date_format(w.date,'%Y-%m-%d') 'date',w.startTime 'startTime',w.endTime 'endTime',w.workCode 'workCode',w.addTime 'addTime',
+			(case DAYOFWEEK(w.date)
+			when '1' then '일'
+			when '2' then '월'
+			when '3' then '화'
+			when '4' then '수'
+			when '5' then '목'
+			when '6' then '금'
+			when '7' then '토'
+			end) as 'day'
+			FROM emp e, work w
+			WHERE e.id = w.id and 
+			date between #{reqStartDate} and #{reqEndDate}
+		
+			
+			<if test='!reqDept.equals("")'>
+			and e.department = #{reqDept}
+			</if>
+			<if test='!reqStaff.equals("")'>
+			and e.staff = #{reqStaff}
+			</if>
+			
+		</select>
+		<insert id="workInsert">
+			INSERT INTO work(id,name,date,startTime,endTime,workCode,addTime) VALUES (#{id},#{name},#{date},#{startTime},#{endTime},#{workCode},#{addTime})
+		</insert>
+</mapper>
