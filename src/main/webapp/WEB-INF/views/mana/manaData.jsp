@@ -12,7 +12,7 @@
 			<div class="search-box">
 			 	<div>
 			 		<span>기준일자</span>
-			 		<span><input type="date" name="manastartDate" id="manastartDate"/></span>
+			 		<span><input type="date" name="startDate" id="startDate"/></span>
 			 	</div>
 			 	<div><button class="manaBtn btn">조회</button></div>
 			</div>

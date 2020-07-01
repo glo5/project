@@ -22,12 +22,14 @@ public class ManaServiceImpl implements ManaService {
 	}
 
 	@Override
-	public List<ManaVO> getMana() {
+	public List<ManaVO> getManaList(ManaVO vo) {
 		
-		return dao.getMana();
+		return dao.getManaList(vo);
 	}
 
-	
-
-	
+	@Override
+	public List<ManaVO> getGroupList(ManaVO vo) {
+		
+		return dao.getGroupList(vo);
+	}
 }

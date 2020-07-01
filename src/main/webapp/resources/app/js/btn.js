@@ -1,48 +1,3 @@
-function addHyphen(value){
-	let str = $.trim($(value).val()).replace(/[^0-9]/g,'');
-	let tmp = "";
-	
-	if(str.length <4){
-		return str;
-	}else if(str.length < 7){
-		tmp += str.substr(0,3);
-		tmp += "-";
-		tmp += str.substr(3);
-		return tmp;
-	}else if(str.length < 11){
-		tmp += str.substr(0,3);
-		tmp += '-';
-		tmp += str.substr(3,3);
-		tmp += '-';
-		tmp += str.substr(6);
-		return tmp;
-	}else{              
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3, 4);
-        tmp += '-';
-        tmp += str.substr(7);
-        
-        return tmp;
-    }
-
-    return str;
-}
-	
-$("#officePhone").keyup(function(){
-		if($(this).val().length ==13 ){
-				$(this).prop("readonly","true");
-			
-		}
-		$(this).val( addHyphen(this));
-});
-$("#phone").keyup(function(){
-	if($(this).val().length ==13 ){
-		$(this).prop("readonly","true");
-	}
-	$(this).val( addHyphen(this));
-});
-
 
 $(".selectBtn").click(function(){
 	
@@ -57,7 +12,6 @@ $(".selectBtn").click(function(){
 			id: $("#requestId").val(),
 			department:$("#requestGroup").val()		
 	}
-	
 	$.ajax({
 		url:"/emp/basicData/select",
 		type:"GET",
@@ -88,6 +42,133 @@ $(".selectBtn").click(function(){
 	
 	})
 })
+
+
+	$(".ManadeleteBtn").click(function(){
+
+		
+		
+		let form = {
+				id: $("#requestId").val(),
+				department:$("#requestGroup").val()		
+		}
+		$.ajax({
+			url:"/mana/manaData/delete",
+			type:"GET",
+			data: form,
+			success: function(data){
+				if(data == "null"){
+					alert("사원이 존재하지 않습니다!")
+					return true;
+				}
+				alert("삭제되었습니다.");
+			},
+			error: function(){
+				alert("err")
+			}
+		})
+	})
+	
+	$(".menu-click").click(function(){
+		let data = {groupName:$(this).text()};
+		console.log(data);
+		
+		$.ajax({
+			url:"/mana/groupSelect",
+			type:"GET",
+			data: data,
+			success: function(data){
+				console.log(data);
+				 var str = "<table id='manaList'>\n <tr>\n"+
+				 			"<th>no</th>\n"+
+							"<th>직원번호</th>\n"+
+							"<th>성명</th>\n"+
+							"<th>조직명</th>\n"+
+							"<th>직책</th>\n"+
+							"<th>회사</th>\n"+
+						"</tr>" ;
+				 		
+				    $.each(data,function(i,v){
+				        //데이터 인풋
+				    
+				    	str+="<tr >";
+				    	str +="<td>"+ (i+1)+"</td>";
+				        str += "<td>"+ v.groupId+"</td>";
+				        str +="<td>"+ v.name+"</td>";
+				        str +="<td>"+ v.groupName+"</td>";
+				        str +="<td>"+ v.staff+"</td>";
+				        str +="<td>"+ v.groupType+"</td>";
+				        str +="</tr>";
+				        
+				    });
+				 str +="</table>";
+				 $(".content").html(str);
+				 
+				
+			},
+			error: function(){
+				alert("err")
+			}
+			
+		
+		})
+	})
+
+	$(".manaBtn").click(function(){
+		
+		if($("#startDate").val() == ""){
+			alert("기준날짜는 공백이면 안됩니다.");
+			return false;
+		}
+		let data = {startDate:$("#startDate").val()};
+		
+		
+		$.ajax({
+			url:"/mana/manaSelect",
+			type:"GET",
+			data: data,
+			success: function(data){
+				console.log(data);
+				 var str = "<table id='manaList'>\n <tr>\n"+
+				 			"<th>no</th>\n"+
+							"<th>조직명</th>\n"+
+							"<th>조직코드</th>\n"+
+							"<th>상위조직</th>\n"+
+							"<th>시작일</th>\n"+
+							"<th>종료일자</th>\n"+
+							"<th>조직유형</th>\n"+
+							"<th>조직순서</th>\n"+
+						"</tr>" ;
+				 	
+				    $.each(data,function(i,v){
+				        //데이터 인풋
+				    	
+				    	str+="<tr >";
+				    	str +="<td>"+ (i+1)+"</td>";
+				        str += "<td>"+ v.groupName+"</td>";
+				        str +="<td>"+ v.groupId+"</td>";
+				        str +="<td>"+ v.groupSq+"</td>";
+				        str +="<td>"+ v.startDate+"</td>";
+				        str +="<td>"+ v.endDate+"</td>";
+				        str +="<td>"+ v.groupType+"</td>";
+				        str +="<td>"+ v.groupCount+"</td>";
+				        str +="</tr>";
+				        
+				    });
+				 str +="</table>";
+				 $(".content").html(str);
+				 
+				
+			},
+			error: function(){
+				alert("err")
+			}
+			
+		
+		})
+	})
+	
+
 
 $(".newBtn").click(function(){
 	let a = /^[0-9]*$/;
@@ -274,80 +355,6 @@ $(".deleteBtn").click(function(){
 	})
 })
 
-$(".ManadeleteBtn").click(function(){
-
-	
-	
-	let form = {
-			id: $("#requestId").val(),
-			department:$("#requestGroup").val()		
-	}
-	$.ajax({
-		url:"/mana/manaData/delete",
-		type:"GET",
-		data: form,
-		success: function(data){
-			if(data == "null"){
-				alert("사원이 존재하지 않습니다!")
-				return true;
-			}
-			alert("삭제되었습니다.");
-		},
-		error: function(){
-			alert("err")
-		}
-	})
-})
-
-$(".manaBtn").click(function(){
-	
-	
-	
-	$.ajax({
-		url:"/mana/select",
-		type:"GET",
-		data: "",
-		success: function(data){
-			console.log(data);
-			 var str = "<table id='manaList'>\n <tr>\n"+
-			 			"<th>no</th>\n"+
-						"<th>조직명</th>\n"+
-						"<th>조직코드</th>\n"+
-						"<th>상위조직</th>\n"+
-						"<th>시작일</th>\n"+
-						"<th>종료일자</th>\n"+
-						"<th>조직유형</th>\n"+
-						"<th>조직순서</th>\n"+
-					"</tr>" ;
-			 		
-			    $.each(data,function(i,v){
-			        //데이터 인풋
-			    
-			    	str+="<tr >";
-			    	str +="<td>"+ (i+1)+"</td>";
-			        str += "<td><pre>"+ v.groupName+"</pre></td>";
-			        str +="<td>"+ v.groupId+"</td>";
-			        str +="<td>"+ v.groupSq+"</td>";
-			        str +="<td>"+ v.startDate+"</td>";
-			        str +="<td>"+ v.endDate+"</td>";
-			        str +="<td>"+ v.groupType+"</td>";
-			        str +="<td>"+ v.groupCount+"</td>";
-			        str +="</tr>";
-			        
-			    });
-			 str +="</table>";
-			 $(".content").html(str);
-			 
-			
-		},
-		error: function(){
-			alert("err")
-		}
-		
-	
-	})
-})
-
 $("#workBtn").click(function(){
 	
 	if($.trim($("#id").val()) == ""){
@@ -386,11 +393,17 @@ $("#workBtn").click(function(){
 		type:"GET",
 		data: $("#frm").serialize(),
 		success: function(data){
-			alert("결과가 반영되었습니다.");
+			if(data == null){
+				alert("존재하지않는 회원입니디. ");
+			}else{
+				alert("결과가 반영되었습니다. ");
+				$("#frm")[0].reset();
+			}
+			
 			
 		},
 		error: function(){
-			alert("err")
+			alert("err");
 		}
 	})
 })
@@ -425,7 +438,7 @@ $(".workSelectList").click(function(){
 	}
 	
 	if($.trim($("#reqStaff").val())==""){
-		$("#reqStaff").val("")
+		$("#reqStaff").val("");
 	}
 	let form = {
 			reqStartDate: $("#reqStartDate").val(),
@@ -440,8 +453,12 @@ $(".workSelectList").click(function(){
 		type:"GET",
 		data: form,
 		success: function(data){
-			console.log(data);
-			 var str = "<tr>\n"+
+			if(data.length <= 1){
+				alert("값이 없습니다");
+				return false;
+			}
+			 let str =
+			 		"<table id='workList'><tr>\n"+
 			 			"<th>no</th>\n"+
 						"<th>사원번호</th>\n"+
 						"<th>성명</th>\n"+
@@ -469,10 +486,11 @@ $(".workSelectList").click(function(){
 			        str +="<td>"+ v.endTime+"</td>";
 			        str +="<td>"+ v.addTime+"</td>";
 			        str +="<td>"+ v.workCode+"</td>";
-			        str +="</tr>";
+			        str +="</tr>\n";
 			    });
+			    str += "</table>";
 			    
-			    $("#workList").html(str);
+			    $(".content").html(str);
 			
 			
 		},
@@ -481,4 +499,126 @@ $(".workSelectList").click(function(){
 		}
 	})
 })
+
+$(".downloadBtn").click(function(){
+	
+	if($.trim($("#reqStartDate").val()) == ""){
+		alert("시작 날짜는 필수입니다!!");
+		$("#reqStartDate").focus();
+		return false;
+	}
+	if($.trim($("#reqEndDate").val()) == ""){
+		let today = new Date();
+		let year = today.getFullYear();
+		let month = today.getMonth()+1;
+		let date = today.getDate();
+		
+		if(month<10) {
+			month='0'+month;
+		} 
+
+		if(date<10) {
+			date='0'+date;
+		} 
+		
+		$("#reqEndDate").val(year +"-"+month+"-"+date);
+		
+	}
+	
+	if($.trim($("#reqDept").val()) == ""){
+		$("#reqDept").val("");
+	}
+	
+	if($.trim($("#reqStaff").val())==""){
+		$("#reqStaff").val("");
+	}
+	let form = {
+			reqStartDate: $("#reqStartDate").val(),
+			reqEndDate:$("#reqEndDate").val(),
+			reqDept:$("#reqDept").val(),
+			reqStaff:$("#reqStaff").val(),
+			
+	}
+	console.log(form);
+	$.ajax({
+		url:"/work/download",
+		type:"GET",
+		data: form,
+		success: function(data){
+			
+
+			console.log("처리됌")
+		},
+		error: function(){
+			alert("err")
+		}
+	})
+});
+
+
+$(".uploadBtn").click(function(){
+	
+	let data = new FormData();
+	data.append("file",$("#uploadFile")[0].files[0]);
+	console.log(data);
+	$.ajax({
+		url:"/work/upload",
+		type:"post",
+		data: data,
+		enctype: 'multipart/form-data',
+		processData: false,  
+		contentType: false, 
+		success: function(data){
+			console.log(data);
+			if(data == null){
+				alert("텍스트 파일이 아닙니다.");
+				return false;
+			}
+			
+			if(data.length <= 1){
+				alert("값이 없습니다");
+				return false;
+			}
+			 let str =
+			 		"<table id='workList'><tr>\n"+
+			 			"<th>no</th>\n"+
+						"<th>사원번호</th>\n"+
+						"<th>성명</th>\n"+
+						"<th>소속</th>\n"+
+						"<th>직위</th>\n"+
+						"<th>출근일자</th>\n"+
+						"<th>요일</th>\n"+
+						"<th>시작시간</th>\n"+
+						"<th>종료시간</th>\n"+
+						"<th>연장근무시간</th>\n"+
+						"<th>근무특이사항</th>\n"+
+					"</tr>" 
+			 		
+			    $.each(data,function(i,v){
+			        //데이터 인풋
+			    	str+="<tr >";
+			    	str +="<td>"+ (i+1)+"</td>";
+			        str +="<td>"+ v.id+"</td>";
+			        str +="<td>"+ v.name+"</td>";
+			        str +="<td>"+ v.department+"</td>";
+			        str +="<td>"+ v.staff+"</td>";
+			        str +="<td>"+ v.date+"</td>";
+			        str +="<td>"+ v.day+"</td>";
+			        str +="<td>"+ v.startTime+"</td>";
+			        str +="<td>"+ v.endTime+"</td>";
+			        str +="<td>"+ v.addTime+"</td>";
+			        str +="<td>"+ v.workCode+"</td>";
+			        str +="</tr>\n";
+			    });
+			    str += "</table>";
+			    
+			    $(".content").html(str);
+		},
+		error: function(){
+			alert("err")
+		}
+	})
+})
+
+
 

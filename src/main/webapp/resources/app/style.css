@@ -90,13 +90,13 @@ td > *{
 .last-menu{
 	width:120px;
 	position: absolute;
-	top:100%;
+	top:0;
 	left: 100%;
 }
 
 .search-box{
 	margin-top: 80px;
-	width:800px;
+	width: 300px;
 	display:flex;
 	justify-content: space-between;
 }
@@ -145,13 +145,22 @@ td > *{
 }
 .right-box {
 	display: flex;
+	width: 70%;
+	padding: 10px;
+	margin: 0 auto;
 	
 }
 .left-content{
-	flex: 1;
+	flex: 2;
+}
+.content{
+	width: 80%;
+	
+	margin: 0 auto;
 }
 .right-content{
-	flex: 4;
+	flex: 3;
+	
 }
 
 

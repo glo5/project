@@ -9,6 +9,8 @@ import com.hr.model.WorkVO;
 
 
 public interface WorkService {
+	
+
 	public List<WorkVO> workList(WorkDTO dto);
 	
 	public void workInsert(WorkVO vo);

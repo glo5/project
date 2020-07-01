@@ -1,5 +1,4 @@
 package com.hr.model;
-
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
@@ -23,8 +22,19 @@ public class WorkVO {
 	
 	
 	
-	public WorkVO() {
+	public WorkVO(int id, String name, String department, String staff, Date date,String day,String startTime, String endTime, String workCode,
+			String addTime) {
 		super();
+		this.id = id;
+		this.name = name;
+		this.department = department;
+		this.staff = staff;
+		this.date = date;
+		this.day = day;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.workCode = workCode;
+		this.addTime = addTime;
 	}
 	public WorkVO(int id, String name, String department, String staff, String startTime, String endTime, String workCode,
 			String addTime) {
@@ -37,6 +47,9 @@ public class WorkVO {
 		this.endTime = endTime;
 		this.workCode = workCode;
 		this.addTime = addTime;
+	}
+	public WorkVO() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
 		return id;

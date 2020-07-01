@@ -2,6 +2,7 @@ package com.hr.controller;
 
 
 
+
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class EmpController {
 	public String showBasicData(Model model) {
 
 		
-		int id = service.getEmpId();
+		int id = service.getMaxId();
 		model.addAttribute("id",id);
 		
 		return "emp/basicdata";
@@ -43,7 +44,7 @@ public class EmpController {
 	@ResponseBody
 	public String insertEmp(EmpVO vo, Model model) {
 		service.insertEmp(vo);
-		int id = service.getEmpId();	
+		int id = service.getMaxId();	
 		return id+"";
 	}
 	@RequestMapping(value = "basicData/update")

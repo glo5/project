@@ -9,6 +9,7 @@ import com.hr.model.WorkVO;
 
 public interface WorkDAO {
 	
+	public WorkVO getWorkId(WorkVO vo);
 	public List<WorkVO> workList(WorkDTO dto);
 	
 	public void workInsert(WorkVO vo);

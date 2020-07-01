@@ -31,21 +31,30 @@ public class ManaController {
 	
 	
 	
-	@RequestMapping(value = "select",method=RequestMethod.GET)
+	@RequestMapping(value = "manaSelect",method=RequestMethod.GET)
 	@ResponseBody
-	public List<ManaVO> getMana() {
-			
-		List<ManaVO> list = service.getMana();
+	public List<ManaVO> getManaList(ManaVO vo) {
 		
-		return service.getMana();
+		return service.getManaList(vo);
 	}
 	
-	@RequestMapping(value = "delete")
+	@RequestMapping(value = "delete",method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteMana(ManaVO vo) {
 	
 		service.deleteMana(vo);
 		return "";
+	}
+	@RequestMapping(value = "groupSelect",method=RequestMethod.GET)
+	@ResponseBody
+	public List<ManaVO> getGroupList(ManaVO vo) {
+		List<ManaVO> list = service.getGroupList(vo);
+		
+		System.out.println(vo.getGroupName());
+		for(ManaVO a : list) {
+			System.out.println(a.toString());
+		}
+		return service.getGroupList(vo);
 	}
 	
 

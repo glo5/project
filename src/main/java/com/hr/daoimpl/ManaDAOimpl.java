@@ -23,10 +23,16 @@ public class ManaDAOimpl implements ManaDAO {
 	}
 
 	@Override
-	public List<ManaVO> getMana() {
+	public List<ManaVO> getManaList(ManaVO vo) {
 
-		return session.selectList(nameSpace+".getMana");
+		return session.selectList(nameSpace+".getManaList",vo);
 
+	}
+
+	@Override
+	public List<ManaVO> getGroupList(ManaVO vo) {
+		
+		return session.selectList(nameSpace+".getGroupList",vo) ;
 	}
 
 

@@ -14,8 +14,8 @@ $(".sub-item").hover(function(){
 $(".up").click(function(){
 	console.log($(this).next());
 
-	$(this).next().toggleClass(" menu");
-	$(this).next().toggleClass(" active");
+	$(this).next().next().toggleClass("menu");
+	$(this).next().next().toggleClass("active");
 });
 
 

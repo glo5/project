@@ -13,7 +13,7 @@
 		
 	</select>
 	
-	<select id="getEmpId" resultType="int">
+	<select id="getMaxId" resultType="Integer">
 		SELECT MAX(id)+1 from emp
 	</select>
 	<insert id="insertEmp">
@@ -32,6 +32,12 @@
 	<delete id="deleteEmp">
 		DELETE 
 		FROM emp
-		WHERE id = #{id};
+		WHERE id = #{id}
 	</delete>
+	
+	<select id="getEmpId" resultType="EmpVO">
+		SELECT *
+		FROM emp
+		WHERE id = #{id} and name = #{name}
+	</select>
 </mapper>

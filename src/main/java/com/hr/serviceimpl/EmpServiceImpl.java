@@ -1,10 +1,12 @@
 package com.hr.serviceimpl;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hr.dao.EmpDAO;
 import com.hr.model.EmpVO;
+import com.hr.model.WorkVO;
 import com.hr.service.EmpService;
 
 @Service
@@ -35,8 +37,15 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public int getEmpId() {
-		return dao.getEmpId();
+	public int getMaxId() {
+		return dao.getMaxId();
+	}
+
+	@Override
+	public EmpVO getEmpId(EmpVO vo) {
+		
+		return dao.getEmpId(vo);
 	}
 
 }
+

@@ -9,22 +9,28 @@
 			<%@include file=".././include/menu.jsp" %>
 		</div>
 		<div class="right">
+		<form id="frm">
 			<div>
+				<div><input type="button" class="downloadBtn" value="download"/>
+				
+				<input type="file" id="uploadFile">
+				<input type="button" class="uploadBtn" value="upload">
+				</div>
 				<div>기준일자<input type="date" name="reqStartDate" id="reqStartDate"/>~<input type="date" name="reqEndDate" id="reqEndDate"/>
 					부서  <input type="text" name="reqDept" id="reqDept"/>
 					직원 <input type="text" name="reqStaff" id="reqStaff">
-					<button class="workSelectList">조회</button>
+					<input type="button" class="workSelectList" value="조회"/>
 				</div>
-				<table id="workList">
-					
-					
-					
-				</table>
+			</div>
+		</form>
+				<div class="content"> 
+				
+				</div>
 				
 				
 			</div>
 		</div>
-	</div>
+	
 	<%@ include file=".././include/footer.jsp" %>
 </body>
 </html>

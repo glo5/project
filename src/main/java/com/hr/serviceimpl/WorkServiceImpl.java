@@ -29,6 +29,6 @@ public class WorkServiceImpl implements WorkService{
 		dao.workInsert(vo);
 		
 	}
-	
+
 	
 }

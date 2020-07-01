@@ -25,6 +25,7 @@
 			</if>
 			
 		</select>
+		
 		<insert id="workInsert">
 			INSERT INTO work(id,name,date,startTime,endTime,workCode,addTime) VALUES (#{id},#{name},#{date},#{startTime},#{endTime},#{workCode},#{addTime})
 		</insert>

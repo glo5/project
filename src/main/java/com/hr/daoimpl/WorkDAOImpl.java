@@ -1,5 +1,6 @@
 package com.hr.daoimpl;
 
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,6 +27,13 @@ public class WorkDAOImpl implements WorkDAO{
 	@Override
 	public void workInsert(WorkVO vo) {
 		session.insert(ns+".workInsert",vo);
+	}
+
+	@Override
+	public WorkVO getWorkId(WorkVO vo) {
+		
+		return session.selectOne(ns+".getWorkId",vo);
+		
 	}
 
 }

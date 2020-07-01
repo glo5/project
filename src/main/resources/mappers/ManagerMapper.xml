@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mappers.ManagerMapper">
-	<select id="getMana" resultType="ManaVO">
-		SELECT groupName,groupId,groupSq,startDate,endDate,groupType,groupCount From manager
+	<select id="getManaList" resultType="ManaVO">
+		SELECT groupName,groupId,groupSq,startDate, endDate,groupType,groupCount 
+		From manager
+		where #{startDate} between startDate and endDate
 	</select>
 	<delete id="deleteEmp">
 		DELETE 
 		FROM manager
-		WHERE id = #{id};
+		WHERE id = #{id}
 	</delete>
-	<select id="get">
-		
+	<select id="getGroupList" resultType="ManaVO">
+	SELECT e.id 'groupId', e.name 'name', e.department 'groupName', e.staff 'staff', (SELECT substr(groupName,4) FROM manager where groupType = '최상위') groupType
+		From emp e,  manager m 
+		where e.department = m.groupName and m.groupName = #{groupName}
 	</select>
+	
 </mapper>

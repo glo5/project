@@ -9,13 +9,18 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Component
 public class ManaVO {
 	private int id;
+	private String name;
+
+	private String staff;
+	
 	private String groupName;
 	private String groupId;
 	private String groupSq;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
-	@JsonFormat(pattern="yyyy-MM-dd")
+	
 	private String groupType;
 	private String groupCount;
 	
@@ -33,6 +38,18 @@ public class ManaVO {
 		this.endDate = endDate;
 		this.groupType = groupType;
 		this.groupCount = groupCount;
+	}
+	public String getStaff() {
+		return staff;
+	}
+	public void setStaff(String staff) {
+		this.staff = staff;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public int getId() {

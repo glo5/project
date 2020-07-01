@@ -7,7 +7,7 @@ public interface EmpDAO {
 	public void insertEmp(EmpVO vo);
 	public void updateEmp(EmpVO vo);
 	public void deleteEmp(EmpVO vo);
-	public int getEmpId();
-	
+	public int getMaxId();
+	public EmpVO getEmpId(EmpVO vo);
 	
 }	
