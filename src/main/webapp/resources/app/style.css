@@ -145,7 +145,7 @@ td > *{
 .active{
 	display: block;
 }
-.menu{
+.menu-1{
 	display: none;
 }
 .right-box {
@@ -154,9 +154,13 @@ td > *{
 	padding: 10px;
 	margin: 0 auto;
 	
+	border: 1px solid black;
+	
 }
 .left-content{
 	flex: 2;
+	border: 1px solid black;
+	background-color: #D4D1D0;
 }
 .content{
 	width: 80%;
@@ -166,9 +170,16 @@ td > *{
 .right-content{
 	flex: 3;
 	
+	border: 1px solid black;	
+	
 }
 #manaList{
 	margin: 0 auto;
+}
+.up{
+	border: none;
+	background-color: rgba(0,0,0,0);
+	outline: none;
 }
 
 

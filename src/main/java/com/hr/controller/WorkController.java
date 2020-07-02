@@ -81,13 +81,7 @@ public class WorkController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		}
-
-			
-		
-
-		
-		
+		}	
 
 		return "";
 	}

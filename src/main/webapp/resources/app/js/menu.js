@@ -14,8 +14,14 @@ $(".sub-item").hover(function(){
 $(".up").click(function(){
 	console.log($(this).next());
 
-	$(this).next().next().toggleClass("menu");
+	$(this).next().next().toggleClass("menu-1");
 	$(this).next().next().toggleClass("active");
+	
+	if($(this).next().next().hasClass("active")){
+		$(this).val("-");
+	}else{
+		$(this).val("+");
+	}
 });
 
 
