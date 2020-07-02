@@ -96,6 +96,13 @@ td > *{
 
 .search-box{
 	margin-top: 80px;
+	width: 500px;
+	display:flex;
+	justify-content: space-between;
+}
+.date-box{
+	
+	margin-top: 80px;
 	width: 300px;
 	display:flex;
 	justify-content: space-between;
@@ -161,6 +168,9 @@ td > *{
 .right-content{
 	flex: 3;
 	
+}
+#manaList{
+	margin: 0 auto;
 }
 
 

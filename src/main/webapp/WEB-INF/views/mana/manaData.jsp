@@ -9,7 +9,7 @@
 		</div>
 		<div class="right">
 			<h1>기본사항</h1>
-			<div class="search-box">
+			<div class="date-box">
 			 	<div>
 			 		<span>기준일자</span>
 			 		<span><input type="date" name="startDate" id="startDate"/></span>

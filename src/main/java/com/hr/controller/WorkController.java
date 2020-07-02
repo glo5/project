@@ -66,43 +66,7 @@ public class WorkController {
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	@ResponseBody
 	public List<WorkVO> fileUpload(@RequestParam("file") MultipartFile file,HttpServletRequest req,HttpServletResponse resp) {
-		
-		List<WorkVO> a = new ArrayList<WorkVO>();
-		WorkVO vo;
-		
-		try {
-			String originalName = file.getOriginalFilename();
-			String ext = originalName.substring(originalName.lastIndexOf(".") + 1);
-			if(!ext.equalsIgnoreCase("txt")) {
-				return null;
-			}
-			InputStreamReader isr = new InputStreamReader(file.getInputStream());
-			BufferedReader br = new BufferedReader(isr);
-			String line;
-		
-			while((line = br.readLine()) != null) {
-				String arr[] = line.split(" ");
-				System.out.println(line);
-				vo  = new WorkVO();
-				vo.setId(Integer.parseInt(arr[0]));
-				vo.setName(arr[1]);
-				vo.setDepartment(arr[2]);
-				vo.setStaff(arr[3]);
-				vo.setDate(Date.valueOf(arr[4]));
-				vo.setDay(arr[5]);
-				vo.setStartTime(arr[6]);
-				vo.setEndTime(arr[7]);
-				vo.setAddTime(arr[8]);
-				vo.setWorkCode(arr[9]);
-				a.add(vo);
-			}
-			
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		}
-		
+		List<WorkVO> a = FileUtil.uploadFile(file, req,resp);
 		return a;
 	}
 

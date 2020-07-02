@@ -545,9 +545,11 @@ $(".downloadBtn").click(function(){
 		type:"GET",
 		data: form,
 		success: function(data){
-			
-
-			console.log("처리됌")
+			if(data == null){
+				alert("파일형식은 TXT입니다");
+				return false;
+			}
+			alert("다운로드처리가 완료되었습니다.")
 		},
 		error: function(){
 			alert("err")
@@ -558,9 +560,14 @@ $(".downloadBtn").click(function(){
 
 $(".uploadBtn").click(function(){
 	
+	if($("#uploadFile")[0].val() == ""){
+		alert("파일이 지정되지않았습니다");
+		return false;
+	}
+	
 	let data = new FormData();
 	data.append("file",$("#uploadFile")[0].files[0]);
-	console.log(data);
+	
 	$.ajax({
 		url:"/work/upload",
 		type:"post",

@@ -1,15 +1,22 @@
 package com.hr.util;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hr.model.WorkVO;
 
@@ -23,8 +30,8 @@ public class FileUtil {
 		
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(path, true));
-
-			resp.setContentType("application/txt");
+			
+			resp.setContentType("application/octet-stream");
 			resp.setHeader("Content-Disposition", "attachment; filename=\"" + randomName + "\";");
 			resp.setHeader("Content-Transfer-Encoding", "binary");
 
@@ -55,10 +62,46 @@ public class FileUtil {
 
 	}
 
-	public static String uploadFile(String uploadPath, String originalName, HttpServletResponse resp) throws Exception {
+	public static List<WorkVO> uploadFile( MultipartFile file,HttpServletRequest req,HttpServletResponse resp)  {
 
-		resp.getOutputStream().flush();
+		
+		List<WorkVO> a = new ArrayList<WorkVO>();
+		WorkVO vo;
+		
+		try {
+			String originalName = file.getOriginalFilename();
+			String ext = originalName.substring(originalName.lastIndexOf(".") + 1);
+			if(!ext.equalsIgnoreCase("txt")) {
+				return null;
+			}
+			InputStreamReader isr = new InputStreamReader(file.getInputStream());
+			BufferedReader br = new BufferedReader(isr);
+			String line;
+		
+			while((line = br.readLine()) != null) {
+				String arr[] = line.split(" ");
+				System.out.println(line);
+				vo  = new WorkVO();
+				vo.setId(Integer.parseInt(arr[0]));
+				vo.setName(arr[1]);
+				vo.setDepartment(arr[2]);
+				vo.setStaff(arr[3]);
+				vo.setDate(Date.valueOf(arr[4]));
+				vo.setDay(arr[5]);
+				vo.setStartTime(arr[6]);
+				vo.setEndTime(arr[7]);
+				vo.setAddTime(arr[8]);
+				vo.setWorkCode(arr[9]);
+				a.add(vo);
+			}
+			
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
+		
+		return a;
 
-		return "true";
 	}
 }
