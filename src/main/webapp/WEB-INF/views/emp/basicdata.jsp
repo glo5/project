@@ -8,8 +8,9 @@
 			<%@include file="../include/menu.jsp" %>
 		</div>
 		<div class="right">
-	
+			
 			<h1>기본사항</h1>
+			<div class="right-box">
 			<div class="search-box">
 			 	<div>
 			 		<span><lable for="requestGroup">부서:</lable></span>
@@ -79,6 +80,8 @@
 				
 			</table>
 	</form>
+	</div>
 		</div>
 	</div>
+	
 	<%@ include file="../include/footer.jsp" %>

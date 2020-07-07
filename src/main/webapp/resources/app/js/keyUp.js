@@ -74,3 +74,8 @@ $("#addTime").keyup(function(){
 	}
 	$(this).val( addColon(this));
 });
+
+$("#email").keyup(function(){
+	$(this).val($.trim($(this).val()).replace(/[^0-9a-zA-Z]/g,''));
+});
+

@@ -9,8 +9,10 @@
 			<%@include file=".././include/menu.jsp" %>
 		</div>
 		<div class="right">
+		<h1>출퇴근 리스트</h1>
+		<div class="right-box column">
 		<form id="frm">
-			<div>
+			<div class="column">
 				<div><input type="button" class="downloadBtn" value="download"/>
 				
 				<input type="file" id="uploadFile">
@@ -23,14 +25,14 @@
 				</div>
 			</div>
 		</form>
-				<div class="content"> 
+				<div class="content flex-center"> 
 				
 				</div>
 				
 				
 			</div>
 		</div>
-	
+	</div>
 	<%@ include file=".././include/footer.jsp" %>
 </body>
 </html>

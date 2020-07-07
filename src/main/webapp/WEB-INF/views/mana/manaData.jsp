@@ -8,7 +8,9 @@
 			<%@include file="../include/menu.jsp" %>
 		</div>
 		<div class="right">
-			<h1>기본사항</h1>
+			<h1>조직관리</h1>
+			
+		<div class="right-box column">
 			<div class="date-box">
 			 	<div>
 			 		<span>기준일자</span>
@@ -19,6 +21,7 @@
 			<div class="content">
 			
 			</div>
+		</div>
 		</div>
 		</div>
 

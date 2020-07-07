@@ -3,5 +3,7 @@
 
 <script src="${pageContext.request.contextPath}/resources/app/js/menu.js?ver=4"></script>
 <script src="${pageContext.request.contextPath}/resources/app/js/btn.js?ver=4"></script>
+<script src="${pageContext.request.contextPath}/resources/app/js/keyUp.js?ver=4"></script>
+
 </body>
 </html>
