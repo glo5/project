@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <%@include file="../include/head.jsp" %>
 <body>
-	<div class="container">
-		<div class="left">
+	<div class="con">
+		<div class="left collapse" id="left">
 			<%@include file="../include/menu.jsp" %>
 		</div>
 		<div class="right">
-		<h1>조직뷰</h1>
+		<h1>조직원확인</h1>
 		
 			 
-			<div class="right-box">
+			<div class="right-box row">
 		
 		
 			<div class="left-content">

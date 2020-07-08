@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <%@include file="../include/head.jsp" %>
+<!DOCTYPE html>
 <body>
-	<div class="container">
-		<div class="left">
+	<div class="con">
+		<div class="left collapse" id="left">
 			<%@include file="../include/menu.jsp" %>
 		</div>
 		<div class="right">
-	
+			
 			<h1>기본사항</h1>
+			<div class="right-box column">
 			<div class="search-box">
 			 	<div>
 			 		<span><lable for="requestGroup">부서:</lable></span>
@@ -19,11 +21,11 @@
 			 		<span><label for="requestId">사원번호</label></span>
 			 		<span><input type="text" name="requestId" id="requestId"></span>
 			 	</div>
-			 	<div><button class="selectBtn btn">조회</button></div>
+			 	<div><button class="selectBtn btn btn-secondary ">조회</button></div>
 			</div>
 			<div class="btn-box">
 				<div>
-				<button class="newBtn btn">새로만들기</button><button class="updateBtn btn">저장</button><button class="deleteBtn btn">삭제</button>
+				<button class="newBtn btn btn-secondary ">추가 </button><button class="updateBtn btn btn-secondary ">저장</button><button class="deleteBtn btn btn-secondary ">삭제</button>
 				</div>
 			</div>
 			<form id="frm">
@@ -47,10 +49,10 @@
 					<td>혈액형</td>
 					<td>
 						<select name="blodType" id="blodType">
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="O">O</option>
-							<option value="AB">AB</option>
+							<c:forEach var="blod" items="${blodType}"> 
+								<option value="${blod.blodType}">
+								${blod.blodType}</option>
+							</c:forEach>
 						</select>
 					</td>
 					<td><label for="department">부서</label></td>
@@ -64,7 +66,15 @@
 					<td><label for="phone">휴대폰</label></td>
 					<td><input type="text" name="phone" id="phone" maxlength="13"/></td>
 					<td><label for="email">이메일</label></td>
-					<td colspan="3"><input width="100%" type="text" name="email" id="email"/></td>
+					<td><input width="100%" type="text" name="email" id="email"/></td>
+					<td colspan="2">
+						<select name="webAddress" id="webAddress">
+							<c:forEach var="web" items="${webAddress}"> 
+								<option value="${web.webAddress}">
+								${web.webAddress}</option>
+							</c:forEach>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><label for="jobType">채용구분</label></td>
@@ -79,6 +89,8 @@
 				
 			</table>
 	</form>
+	</div>
 		</div>
 	</div>
+	
 	<%@ include file="../include/footer.jsp" %>

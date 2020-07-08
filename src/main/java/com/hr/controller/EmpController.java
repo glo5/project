@@ -4,6 +4,9 @@ package com.hr.controller;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,57 +18,69 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hr.model.EmpVO;
 import com.hr.service.EmpService;
+import com.hr.service.OptionService;
 
 @Controller
 @RequestMapping("/emp/")
 public class EmpController {
 	
 	@Autowired
-	EmpService service;
+	EmpService eService;
+	
+	@Autowired
+	OptionService oService;
 	
 	@RequestMapping(value ="basicData",method=RequestMethod.GET)
 	public String showBasicData(Model model) {
-
 		
-		int id = service.getMaxId();
+		int id = eService.getMaxId();
 		model.addAttribute("id",id);
+		model.addAttribute("blodType",oService.getBlodType());
+		model.addAttribute("webAddress",oService.getEmail());
+		
+		
 		
 		return "emp/basicdata";
 	}
 	@RequestMapping(value = "basicData/select",method=RequestMethod.GET)
 	@ResponseBody
 	public EmpVO getEmp(EmpVO vo) {
-		
-		
-		return service.getEmp(vo);
+		EmpVO a = eService.getEmp(vo); 
+		int now = a.getEmail().indexOf("@");
+		a.setWebAddress(a.getEmail().substring(now));
+
+		a.setEmail(a.getEmail().substring(0,now));
+;		return a;
 	}
 	
 	@RequestMapping(value = "basicData/insert")
 	@ResponseBody
 	public String insertEmp(EmpVO vo, Model model) {
-		service.insertEmp(vo);
-		int id = service.getMaxId();	
+		vo.setEmail(vo.getEmail()+vo.getWebAddress());
+		eService.insertEmp(vo);
+		int id = eService.getMaxId();	
 		return id+"";
 	}
 	@RequestMapping(value = "basicData/update")
 	@ResponseBody
 	public String updateEmp(EmpVO vo) {
-		if(service.getEmp(vo) == null) {
-			service.insertEmp(vo);
+		if(eService.getEmp(vo) == null) {
+			eService.insertEmp(vo);
 			return "insert";
 		}
-		service.updateEmp(vo);
+		vo.setEmail(vo.getEmail()+vo.getWebAddress());
+		eService.updateEmp(vo);
 		return "";
 	}
 	@RequestMapping(value = "basicData/delete")
 	@ResponseBody
 	public String deleteEmp(EmpVO vo) {
-		EmpVO a = service.getEmp(vo);
+		EmpVO a = eService.getEmp(vo);
 		System.out.println(a);
 		if(a == null) {
 			return "null";
 		}
-		service.deleteEmp(vo);
+		eService.deleteEmp(vo);
 		return "";
 	}
 }

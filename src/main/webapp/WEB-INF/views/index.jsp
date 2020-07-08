@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="./include/head.jsp" %>
 <body>
-	<div class="container">
-		<div class="left">
+	<div class="con">
+		<div class="left collapse" id="left">
 			<%@include file="./include/menu.jsp" %>
 		</div>
 		<div class="right">
