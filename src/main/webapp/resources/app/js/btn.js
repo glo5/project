@@ -29,6 +29,7 @@ $(".selectBtn").click(function(){
 			 $("#officePhone").val(data.officePhone);
 			 $("#phone").val(data.phone);
 			 $("#email").val(data.email);
+			 $("#webAddress").val(data.webAddress);
 			 $("#jobType").val(data.jobType);
 			 $("#startDate").val(data.startDate);
 			 $("#longDate").val(data.longDate);

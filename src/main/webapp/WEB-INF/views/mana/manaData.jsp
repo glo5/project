@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <%@include file="../include/head.jsp" %>
 <body>
-	<div class="container">
-		<div class="left">
+	<div class="con">
+		<div class="left collapse" id="left">
 			<%@include file="../include/menu.jsp" %>
 		</div>
 		<div class="right">
@@ -16,7 +16,7 @@
 			 		<span>기준일자</span>
 			 		<span><input type="date" name="startDate" id="startDate"/></span>
 			 	</div>
-			 	<div><button class="manaBtn btn">조회</button></div>
+			 	<div><button class="manaBtn btn btn-secondary ">조회</button></div>
 			</div>
 			<div class="content">
 			

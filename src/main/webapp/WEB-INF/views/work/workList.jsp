@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
-	<div class="container">
-		<div class="left">
+	<div class="con">
+		<div class="left collapse" id="left">
 			<%@include file=".././include/menu.jsp" %>
 		</div>
 		<div class="right">
@@ -21,7 +21,7 @@
 				<div>기준일자<input type="date" name="reqStartDate" id="reqStartDate"/>~<input type="date" name="reqEndDate" id="reqEndDate"/>
 					부서  <input type="text" name="reqDept" id="reqDept"/>
 					직원 <input type="text" name="reqStaff" id="reqStaff">
-					<input type="button" class="workSelectList" value="조회"/>
+					<input type="button" class="workSelectList btn btn-secondary " value="조회"/>
 				</div>
 			</div>
 		</form>

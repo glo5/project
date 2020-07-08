@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file=".././include/head.jsp" %>
 <body>
-	<div class="container">
-		<div class="left">
+	<div class="con">
+		<div class="left collapse" id="left">
 			<%@include file=".././include/menu.jsp" %>
 		</div>
 		<div class="right">
@@ -28,7 +28,7 @@
 					<td><input type="text" name="addTime" id="addTime" placeholder="00:00 형식"></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="전송" id="workBtn"/></td>
+					<td><input type="button" value="전송" id="workBtn btn-secondary "/></td>
 				</tr>		
 		
 			</table>

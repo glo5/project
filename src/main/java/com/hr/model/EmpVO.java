@@ -18,6 +18,8 @@ public class EmpVO {
 	private String officePhone;
 	private String phone;
 	private String email;
+	private String webAddress;
+	
 	private String job_type;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
@@ -186,6 +188,19 @@ public class EmpVO {
 	}
 	public  void setLongDate(String longDate) {
 		this.longDate = longDate;
+	}
+	
+	public String getWebAddress() {
+		return webAddress;
+	}
+	public void setWebAddress(String webAddress) {
+		this.webAddress = webAddress;
+	}
+	public String getJob_type() {
+		return job_type;
+	}
+	public void setJob_type(String job_type) {
+		this.job_type = job_type;
 	}
 	@Override
 	public String toString() {
